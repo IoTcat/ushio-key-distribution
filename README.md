@@ -57,6 +57,17 @@ else
     echo "No differences found. No action taken."
 fi
 ```
+#### Cron Job Configuration
+```cron
+8 3 * * * /bin/bash /home/iotcat/config/cron.sh 2>&1 | logger -t cron
+```
+This cron job runs the script daily at 3:08 AM, redirecting output to the system logger with the tag `cron`.
+
+#### Checking Logs
+```bash
+journalctl -t cron
+```
+This command filters the system logs to show entries tagged with `cron`, allowing you to monitor the output and behavior of the cron job.
 
 ## Key Points
  - **File Deletion Handling:** If a file is deleted on the master server, it will still be kept on the slave servers.
